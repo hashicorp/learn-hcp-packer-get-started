@@ -1,0 +1,3 @@
+## Learn HCP Packer
+
+This is a companion repository for the [Get Started with HCP Packer](https://learn.hashicorp.com/tutorials/terraform/aws-assume-role)tutorials on [HashiCorp Learn](https://learn.hashicorp.com/). It contains Packer templates and Terraform configuration files that allows you to track an image's metadata using HCP Packer registry, enabling you to reference specific machine/container images to build child images and deploy VMs/containers.
