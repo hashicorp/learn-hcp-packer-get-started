@@ -53,7 +53,7 @@ build {
     description = <<EOT
 Some nice description about the image being published to HCP Packer Registry.
     EOT
-    labels = {
+    bucket_labels = {
       "foo-version" = "3.4.0",
       "foo"         = "bar",
     }
