@@ -12,7 +12,7 @@ variable "version" {
   default = "1.0.0"
 }
 
-data "amazon-ami" "ubuntu-xenial-east" {
+data "amazon-ami" "ubuntu-focal-east" {
   region = "us-east-2"
   filters = {
     name = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
@@ -23,14 +23,14 @@ data "amazon-ami" "ubuntu-xenial-east" {
 
 source "amazon-ebs" "basic-example-east" {
   region = "us-east-2"
-  source_ami     = data.amazon-ami.ubuntu-xenial-east.id
+  source_ami     = data.amazon-ami.ubuntu-focal-east.id
   instance_type  = "t2.small"
   ssh_username   = "ubuntu"
   ssh_agent_auth = false
   ami_name       = "packer_AWS_{{timestamp}}_v${var.version}"
 }
 
-data "amazon-ami" "ubuntu-xenial-west" {
+data "amazon-ami" "ubuntu-focal-west" {
   region = "us-west-1"
   filters = {
     name = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
@@ -41,7 +41,7 @@ data "amazon-ami" "ubuntu-xenial-west" {
 
 source "amazon-ebs" "basic-example-west" {
   region = "us-west-1"
-  source_ami     = data.amazon-ami.ubuntu-xenial-west.id
+  source_ami     = data.amazon-ami.ubuntu-focal-west.id
   instance_type  = "t2.small"
   ssh_username   = "ubuntu"
   ssh_agent_auth = false
