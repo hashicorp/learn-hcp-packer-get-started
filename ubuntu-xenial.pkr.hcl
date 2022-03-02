@@ -7,12 +7,15 @@ packer {
   }
 }
 
+variable "version" {
+  type    = string
+  default = "1.0.1"
+}
+
 data "amazon-ami" "ubuntu-xenial-east" {
   region = "us-east-2"
   filters = {
-    name                = "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*"
-    root-device-type    = "ebs"
-    virtualization-type = "hvm"
+    name = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
   }
   most_recent = true
   owners      = ["099720109477"]
@@ -24,27 +27,25 @@ source "amazon-ebs" "basic-example-east" {
   instance_type  = "t2.small"
   ssh_username   = "ubuntu"
   ssh_agent_auth = false
-  ami_name       = "packer_AWS_{{timestamp}}"
+  ami_name       = "packer_AWS_{{timestamp}}_v${var.version}"
 }
 
 data "amazon-ami" "ubuntu-xenial-west" {
-  region = "us-west-2"
+  region = "us-west-1"
   filters = {
-    name                = "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*"
-    root-device-type    = "ebs"
-    virtualization-type = "hvm"
+    name = "ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"
   }
   most_recent = true
   owners      = ["099720109477"]
 }
 
 source "amazon-ebs" "basic-example-west" {
-  region = "us-west-2"
+  region = "us-west-1"
   source_ami     = data.amazon-ami.ubuntu-xenial-west.id
   instance_type  = "t2.small"
   ssh_username   = "ubuntu"
   ssh_agent_auth = false
-  ami_name       = "packer_AWS_{{timestamp}}"
+  ami_name       = "packer_AWS_{{timestamp}}_v${var.version}"
 }
 
 build {
@@ -54,8 +55,14 @@ build {
 Some nice description about the image being published to HCP Packer Registry.
     EOT
     bucket_labels = {
-      "foo-version" = "3.4.0",
-      "foo"         = "bar",
+      "owner"          = "platform-team"
+      "os"             = "Ubuntu",
+      "ubuntu-version" = "Xenial 16.04",
+    }
+
+    build_labels = {
+      "build-time"   = timestamp()
+      "build-source" = basename(path.cwd)
     }
   }
   sources = [
