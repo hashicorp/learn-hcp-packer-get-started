@@ -2,7 +2,8 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/aws" {
-  version = "3.62.0"
+  version     = "3.62.0"
+  constraints = "3.62.0"
   hashes = [
     "h1:3aKS+Lra6yHSs6zMqgVZXBZhYG7nkHS6DED8sG+rAlo=",
     "zh:08a94019e17304f5927d7c85b8f5dade6b9ffebeb7b06ec0643aaa1130c4c85d",
@@ -20,20 +21,20 @@ provider "registry.terraform.io/hashicorp/aws" {
 }
 
 provider "registry.terraform.io/hashicorp/hcp" {
-  version     = "0.17.0"
-  constraints = "0.17.0"
+  version     = "0.23.1"
+  constraints = "0.23.1"
   hashes = [
-    "h1:RtDr4TyUcYPrOlTfWe8yqIvQTXVTbFI+0VDdnqx09/4=",
-    "zh:111f593e8e43fea8a46a3db9efaf883eb5d69f81b2cd3fbee699cafa4dfcbbb3",
-    "zh:1eb1fbbfd63cf64060a38bf826854a6c3ccbd3e85b71bd70f7063d797c5a809f",
-    "zh:2287283be6f7750beda4a6fcc97d6df3198c08ebadae86abd3a230d96a9b3573",
-    "zh:4b1f331397d209fd88f902e7aef3dc6a083dfbe96fbe0c99634ca544e88b8be6",
-    "zh:60f6bfb10cf52c8934353f76ded8594dd350f836b0e2024559c70acf3a737229",
-    "zh:ac3a4d8408088852c49700aee2c2aac875f355c73f1454ad37a78affbe7b4b7c",
-    "zh:db6065fa7fedb3f00f9a6cb676558720f6ebcca88d87110fc694965aa8025b33",
-    "zh:dfc48081049e0be5252cd02f10c49dbb2ba8a170b4c4f53405334cde1c892647",
-    "zh:f4656003b9ac7d67762a1ebe93bb6baf167c3af4e02e5df9a1d36f46b1131655",
-    "zh:f5b9c86d098779d1416497f6e4b33c74ab27d05bd483b33faaf337c6f64692f2",
-    "zh:f9160fd6d4fa9fb201321ac8a13805ce5cc64e9d09297fd6dfd5b03cee644bbf",
+    "h1:OeCY9pcVhlaVbONZ8fQ7Dgm/hFmkhmXXWJaAnLitkqM=",
+    "zh:02c661913643a56ba640432a0bcdf2824218a3598a243da4fd6079238164e7f6",
+    "zh:2359656d097fb1164bfe961314dafdac80f272c9bc0e359a6e43f5467a231e8f",
+    "zh:2463ac7e40702cbb4ebd4a397964b87de1b65dcb6982eab32f2bd40c9a5b1294",
+    "zh:420ef5061b936741a469b4e02dfe9ee047d928c294647e8c5f93e4a8890997a3",
+    "zh:5eba99a60a3366cd97b70a4ee26cb4489ca320699010bd03ca726772a10089c1",
+    "zh:82419028e8691acbb2c3f7e7d8c2c931ee03d6b3df6b97f5b965365f0a90392f",
+    "zh:93b7eecff21055c8b46d5a69ba982abc76479f73a78f67fc86fc86ba56f630cd",
+    "zh:c151238e96c30126529ccc42bf06d84f73fcd87ee40dbb493be8d85ef0efd453",
+    "zh:d476ebe1a628abd08d11354a13e5b8aa708d820dcad78587b8440d12f0e219ef",
+    "zh:e48130a57cf930755983b861768b8e88767e11df33640386d03496d551fb64ce",
+    "zh:ed9cf5173ea09010ef5ecae452dd3da52054a659e23af8d8e1ed6a45270cd531",
   ]
 }
