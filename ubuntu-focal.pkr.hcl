@@ -9,7 +9,7 @@ packer {
 
 variable "version" {
   type    = string
-  default = "1.0.1"
+  default = "1.0.0"
 }
 
 data "amazon-ami" "ubuntu-focal-east" {
