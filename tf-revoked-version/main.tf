@@ -4,25 +4,25 @@ provider "aws" {
   region = var.region
 }
 
-data "hcp_packer_image" "ubuntu_us_east_2" {
-  bucket_name    = "learn-packer-ubuntu"
-  cloud_provider = "aws"
-  iteration_id   = var.version_id
-  region         = "us-east-2"
+data "hcp_packer_artifact" "ubuntu_us_east_2" {
+  bucket_name         = "learn-packer-ubuntu"
+  platfotm            = "aws"
+  version_fingerprint = var.version_id
+  region              = "us-east-2"
 }
 
 resource "aws_instance" "app_server" {
-  ami           = data.hcp_packer_image.ubuntu_us_east_2.cloud_image_id
+  ami           = data.hcp_packer_artifact.ubuntu_us_east_2.external_identifier
   instance_type = "t2.micro"
   tags = {
     Name = "Learn-HCP-Packer"
   }
-  
+
   lifecycle {
     precondition {
       condition = try(
-        formatdate("YYYYMMDDhhmmss", data.hcp_packer_image.ubuntu_us_east_2.revoke_at) > formatdate("YYYYMMDDhhmmss", timestamp()),
-        data.hcp_packer_image.ubuntu_us_east_2.revoke_at == null
+        formatdate("YYYYMMDDhhmmss", data.hcp_packer_artifact.ubuntu_us_east_2.revoke_at) > formatdate("YYYYMMDDhhmmss", timestamp()),
+        data.hcp_packer_artifact.ubuntu_us_east_2.revoke_at == null
       )
       error_message = "Source AMI is revoked."
     }
