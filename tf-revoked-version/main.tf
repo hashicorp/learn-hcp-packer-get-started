@@ -7,7 +7,7 @@ provider "aws" {
 data "hcp_packer_image" "ubuntu_us_east_2" {
   bucket_name    = "learn-packer-ubuntu"
   cloud_provider = "aws"
-  iteration_id   = var.iteration_id
+  iteration_id   = var.version_id
   region         = "us-east-2"
 }
 
