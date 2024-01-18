@@ -7,30 +7,30 @@ packer {
   }
 }
 
-data "hcp-packer-iteration" "ubuntu" {
-  bucket_name = "learn-packer-ubuntu"
-  channel     = "production"
+data "hcp-packer-version" "ubuntu" {
+  bucket_name  = "learn-packer-ubuntu"
+  channel_name = "production"
 }
 
-data "hcp-packer-image" "ubuntu-east" {
-  bucket_name    = "learn-packer-ubuntu"
-  iteration_id   = data.hcp-packer-iteration.ubuntu.id
-  cloud_provider = "aws"
-  region         = "us-east-2"
+data "hcp-packer-artifact" "ubuntu-east" {
+  bucket_name         = "learn-packer-ubuntu"
+  version_fingerprint = data.hcp-packer-version.ubuntu.fingerprint
+  platform            = "aws"
+  region              = "us-east-2"
 }
 
-data "hcp-packer-image" "ubuntu-west" {
-  bucket_name    = "learn-packer-ubuntu"
-  iteration_id   = data.hcp-packer-iteration.ubuntu.id
-  cloud_provider = "aws"
-  region         = "us-west-1"
+data "hcp-packer-artifact" "ubuntu-west" {
+  bucket_name         = "learn-packer-ubuntu"
+  version_fingerprint = data.hcp-packer-version.ubuntu.fingerprint
+  platform            = "aws"
+  region              = "us-west-1"
 }
 
 source "amazon-ebs" "application-east" {
   ami_name = "packer_AWS_{{timestamp}}"
 
   region         = "us-east-2"
-  source_ami     = data.hcp-packer-image.ubuntu-east.id
+  source_ami     = data.hcp-packer-artifact.ubuntu-east.external_identifier
   instance_type  = "t2.small"
   ssh_username   = "ubuntu"
   ssh_agent_auth = false
@@ -44,7 +44,7 @@ source "amazon-ebs" "application-west" {
   ami_name = "packer_AWS_{{timestamp}}"
 
   region         = "us-west-1"
-  source_ami     = data.hcp-packer-image.ubuntu-west.id
+  source_ami     = data.hcp-packer-artifact.ubuntu-west.external_identifier
   instance_type  = "t2.small"
   ssh_username   = "ubuntu"
   ssh_agent_auth = false
@@ -62,7 +62,7 @@ Some nice description about the image being published to HCP Packer Registry.
     EOT
     bucket_labels = {
       "foo-version" = "3.4.0",
-      "foo"         = "bar",
+      "foo" = "bar",
     }
   }
   sources = [
