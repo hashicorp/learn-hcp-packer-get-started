@@ -40,7 +40,7 @@ data "amazon-ami" "ubuntu-focal-west" {
 }
 
 source "amazon-ebs" "basic-example-west" {
-  region         = "us-west-1"
+  region = "us-west-1"
   source_ami     = data.amazon-ami.ubuntu-focal-west.id
   instance_type  = "t2.small"
   ssh_username   = "ubuntu"
