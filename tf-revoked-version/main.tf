@@ -6,8 +6,8 @@ provider "aws" {
 
 data "hcp_packer_artifact" "ubuntu_us_east_2" {
   bucket_name         = "learn-packer-ubuntu"
-  platfotm            = "aws"
-  version_fingerprint = var.version_id
+  platform            = "aws"
+  version_fingerprint = var.version_fingerprint
   region              = "us-east-2"
 }
 

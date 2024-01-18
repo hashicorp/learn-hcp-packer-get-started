@@ -3,7 +3,7 @@ variable "region" {
   default = "us-east-2"
 }
 
-variable "version_id" {
+variable "version_fingerprint" {
   type    = string
   default = ""
 }

@@ -1,1 +1,1 @@
-version_id = "VERSION_ID"
+version_fingerprint = "VERSION_FINGERPRINT"
