@@ -17,7 +17,7 @@ data "hcp_packer_artifact" "ubuntu_us_east_2" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = data.hcp_packer_image.ubuntu_us_east_2.external_identifier
+  ami           = data.hcp_packer_artifact.ubuntu_us_east_2.external_identifier
   instance_type = "t2.micro"
   tags = {
     Name = "Learn-HCP-Packer"
