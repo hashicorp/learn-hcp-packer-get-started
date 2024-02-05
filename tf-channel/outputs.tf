@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 output "ubuntu_version" {
   value = data.hcp_packer_version.ubuntu
 }
